@@ -1,0 +1,21 @@
+<header>
+<h1>Transações</h1>
+</header>
+<main>
+<ul>
+  <% @transactions.each do |transaction| %>
+    <li>
+      <%= link_to transaction.pokemon_name, edit_transaction_path(transaction) %>
+      <%= transaction.transaction_value %>
+      <%= Transaction.human_attribute_name("transaction_type.#{transaction.transaction_type}") %>
+    </li>
+  <% end %>
+</ul>
+<div>
+  <h4>Você possui <%= Transaction.where(enabled: true).count %> Pokemóns Ativos na Carteira </h4>
+</div>
+</main>
+<footer>
+<%= link_to "Adicionar Compra", new_transaction_path(:transaction => { :transaction_type => "compra" }) %>
+<%= link_to "Adicionar Venda", new_transaction_path(:transaction => { :transaction_type => "venda" }) %>
+</footer>
