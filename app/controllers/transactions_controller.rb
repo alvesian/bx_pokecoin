@@ -3,6 +3,7 @@
 class TransactionsController < ApplicationController
   def index
     @transactions = Transaction.all.order(:id)
+    @enabled_transactions = Transaction.all.where(enabled: true).order(:id)
   end
 
   def show
@@ -15,7 +16,7 @@ class TransactionsController < ApplicationController
 
   def create
     @transaction = Transaction.new(transaction_params)
-    
+
     if @transaction.save
       if @transaction.transaction_type == "venda"
         id = Transaction.where(enabled: true).where(pokemon_name: @transaction.pokemon_name).pluck(:id)
@@ -40,7 +41,7 @@ class TransactionsController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
-  
+
   def disable_pokemon(id)
     @transaction_up = Transaction.find(id)
     @transaction_up.update(enabled: false)

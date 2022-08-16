@@ -1,0 +1,8 @@
+---
+pt-BR:
+  activerecord:
+    attributes:
+      transaction:
+        pokemon_name: "Nome"
+        transaction_value: "Valor da transação"
+        full_name: "Nome Completo"

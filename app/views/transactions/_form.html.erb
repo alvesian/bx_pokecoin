@@ -1,30 +1,32 @@
 <%= form_with model: transaction do |form| %>
+  <div data-controller="transaction">
   <div>
     <% if transaction.transaction_type == "venda" %>
-      <%= form.label :pokemon_name %><br>
+      <%= form.label "Nome do Pokemón" %><br>
       <%= form.collection_select :pokemon_name, Transaction.where(enabled: true).order(:pokemon_name), :pokemon_name, :pokemon_name, wrapper: false %>
-      <%= form.label :transaction_value %>
+      <%= form.label "Valor da transação (USD):" %>
       <%= form.text_field :transaction_value, class: 'money-hundreds col-lg-2', prepend: 'R$' %>
       <%= form.select :transaction_type, Transaction.transaction_types.keys.map { |s| [Transaction.human_attribute_name("transaction_type.#{s}"), s] },{}, {:disabled => true} %>
       <%= form.hidden_field :transaction_type, value: "venda" %>
       <%= form.hidden_field :enabled, value: false %>
     <% else %>
-      <%= form.label :pokemon_name %><br>
-      <%= form.text_field :pokemon_name %>
-      <%= form.label :transaction_value %>
-      <%= form.text_field :transaction_value, class: 'money-hundreds col-lg-2', prepend: 'R$' %>
+      <%= form.label "Nome do Pokemón" %>
+      <%= form.text_field :pokemon_name, 'data-transaction-target' => 'pokeName' %>
+      <button type="button" class= "btn btn-secondary" data-action="click->transaction#check">
+          Validar
+      </button>
+      <%= form.label "Valor da transação (USD):" %>
+      <%= form.text_field :transaction_value, 'data-transaction-target' => 'pokeValue' %>
       <%= form.select :transaction_type, Transaction.transaction_types.keys.map { |s| [Transaction.human_attribute_name("transaction_type.#{s}"), s] },{}, {:disabled => true} %>
       <%= form.hidden_field :transaction_type, value: "compra" %> 
       <% end %>
     
-
-
     <% transaction.errors.full_messages_for(:name).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Registrar"%>
   </div>
 <% end %>

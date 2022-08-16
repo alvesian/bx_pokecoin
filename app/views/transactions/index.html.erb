@@ -6,16 +6,19 @@
   <% @transactions.each do |transaction| %>
     <li>
       <%= link_to transaction.pokemon_name, edit_transaction_path(transaction) %>
-      <%= transaction.transaction_value %>
+      <%= number_to_currency(transaction.transaction_value) %>
       <%= Transaction.human_attribute_name("transaction_type.#{transaction.transaction_type}") %>
     </li>
   <% end %>
 </ul>
 <div>
-  <h4>Você possui <%= Transaction.where(enabled: true).count %> Pokemóns Ativos na Carteira </h4>
+  <h4>Você possui <%= Transaction.where(enabled: true).count %> Pokemón(s) Ativos na Carteira:</h4>
+    <% @enabled_transactions.each do |transaction| %>
+      <div><%=  transaction.pokemon_name %></div>
+  <% end %>
 </div>
 </main>
 <footer>
-<%= link_to "Adicionar Compra", new_transaction_path(:transaction => { :transaction_type => "compra" }) %>
-<%= link_to "Adicionar Venda", new_transaction_path(:transaction => { :transaction_type => "venda" }) %>
+<%= link_to'<button type="button">Compra</button>'.html_safe, new_transaction_path(:transaction => { :transaction_type => "compra" }) %>
+<%= link_to'<button type="button">Venda</button>'.html_safe, new_transaction_path(:transaction => { :transaction_type => "venda" }) %>
 </footer>
