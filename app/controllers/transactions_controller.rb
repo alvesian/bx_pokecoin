@@ -57,7 +57,7 @@ class TransactionsController < ApplicationController
   private
 
   def transaction_params
-    params.require(:transaction).permit(:pokemon_name, :transaction_value, :transaction_type, :enabled)
+    params.require(:transaction).permit(:pokemon_name, :transaction_value, :transaction_type, :enabled, :img_url)
   end
 
 end

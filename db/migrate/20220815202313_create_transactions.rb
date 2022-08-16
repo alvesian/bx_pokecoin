@@ -5,7 +5,8 @@ class CreateTransactions < ActiveRecord::Migration[6.0]
       t.float :transaction_value
       t.integer :transaction_type
       t.boolean :enabled, default: true, null: false
-
+      t.string :img_url
+      
       t.timestamps
     end
   end

@@ -1,7 +1,7 @@
 import { Controller } from 'stimulus'
 
 export default class extends Controller {
-  static targets = [ "pokeName", "pokeValue" ]
+  static targets = [ "pokeName", "pokeValue", "pokeImg" ]
 
   connect() {
     Rails.ajax({
@@ -32,6 +32,7 @@ export default class extends Controller {
       success: (response) => {
         const value = response['base_experience'] * 0.00000001 * btc_usd
         this.pokeValueTarget.value = value
+        this.pokeImgTarget.value = response['sprites']['other']['official-artwork']['front_default']
       }
     })
   }

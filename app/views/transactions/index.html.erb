@@ -1,24 +1,47 @@
 <header>
-<h1>Transações</h1>
+
 </header>
 <main>
-<ul>
-  <% @transactions.each do |transaction| %>
-    <li>
-      <%= link_to transaction.pokemon_name, edit_transaction_path(transaction) %>
-      <%= number_to_currency(transaction.transaction_value) %>
-      <%= Transaction.human_attribute_name("transaction_type.#{transaction.transaction_type}") %>
-    </li>
-  <% end %>
-</ul>
-<div>
-  <h4>Você possui <%= Transaction.where(enabled: true).count %> Pokemón(s) Ativos na Carteira:</h4>
+<section class = "conteudo">
+<section class = "carteira">
+<section class = "carteira_topo">
+  <div><h1>MINHA</h1>
+  <h2>POKÉCARTEIRA</h2></div>
+  <div class = "carteira_direita"><%= link_to'<button class = "botao_grande", type="button">Comprar</button>'.html_safe, new_transaction_path(:transaction => { :transaction_type => "compra" }) %>
+  <%= link_to'<button class = "botao_grande", type="button">Vender</button>'.html_safe, new_transaction_path(:transaction => { :transaction_type => "venda" }) %></div>
+</section>
+<section class = "carteira_base">
     <% @enabled_transactions.each do |transaction| %>
-      <div><%=  transaction.pokemon_name %></div>
+      <div class = "pokemons"><%= image_tag(transaction.img_url, :class => "img_preview") %>
+      <h3><%=  transaction.pokemon_name %></h3></div>
   <% end %>
-</div>
+</section>
+</section>
+
+<section class = "historico">
+  <div><h4>Histórico de</h4>
+  <h5>Transações</h5></div>
+  <% @transactions.each do |transaction| %>
+    <% if transaction.transaction_type == "venda" %>
+    <div class="item">
+    <h6>
+      <%= link_to transaction.pokemon_name, edit_transaction_path(transaction) %>
+      <%= render inline:"foi vendido por"%>
+      <%= number_to_currency(transaction.transaction_value) %>
+    </h6>
+    </div>
+    <% else %>
+      <div class="item_venda">
+      <h6>
+        <%= link_to transaction.pokemon_name, edit_transaction_path(transaction) %>
+        <%= render inline:"foi comprado por"%>
+        <%= number_to_currency(transaction.transaction_value) %>
+      </h6>
+      </div>
+    <% end %>
+  <% end %>
+</section>
+</section>
 </main>
 <footer>
-<%= link_to'<button type="button">Compra</button>'.html_safe, new_transaction_path(:transaction => { :transaction_type => "compra" }) %>
-<%= link_to'<button type="button">Venda</button>'.html_safe, new_transaction_path(:transaction => { :transaction_type => "venda" }) %>
 </footer>

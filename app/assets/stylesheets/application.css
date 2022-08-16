@@ -1,15 +1,167 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400&display=swap');
+
+body{
+    background-image: url("oke.png");
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    padding-top: 150px;
+    padding-bottom: 150px;
+}
+
+.conteudo {
+    display: flex;
+}
+
+.carteira{
+    display: flex;
+    flex-direction: column;
+    flex-basis:66.66%;
+    padding-left: 100px;
+    padding-right: 50px;
+}
+
+.pokemons{
+    width: 230px;
+    height: 260px;
+    display: flex;
+    background-color: #388fe3;
+    border-radius: 15px;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+}
+
+h1{
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 45px;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: 200;
+    margin: auto;
+    margin-top: 15px;
+}
+
+h2{
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 55px;
+    color: #ffffff;
+    text-transform: uppercase;
+    margin: auto;
+}
+
+h3{
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 23px;
+    color: #ffffff;
+    text-transform: capitalize;
+
+}
+
+h4{
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 45px;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: 200;
+    margin: auto;
+    margin-top: 15px;
+    text-align: center;
+}
+
+h5{
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 55px;
+    color: #ffffff;
+    text-transform: uppercase;
+    margin: auto;
+    text-align: center;
+}
+
+h6{
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 23px;
+    color: #ffffff;
+    font-weight: 300;
+    margin: auto;
+    text-align: center;
+}
+
+a{
+    color:#ffffff;
+    text-transform: capitalize;
+}
+
+.botao_grande{
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #2644ba;
+    border-radius: 13px;
+    text-transform: uppercase;
+    width: 230px;
+    height: 55px;
+    font-size: 20px;
+    margin: 5px;
+    margin-right: 45px;
+    border-width: 2px;
+    border-color: #ffffff;
+}
+
+.carteira_topo{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    margin-bottom: 20px;
+    justify-content: space-between;
+}
+
+.carteira_direita{
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    justify-content: space-between;
+}
+
+.carteira_base{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 70px;
+}
+
+.historico{
+    display: flex;
+    flex-basis: 33.33%;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    border-left: 3px solid #ffffff;
+    gap: 5px;
+}
+
+.img_preview {
+    display: block;
+    width: 80%;
+}
+
+.item {
+    width: 500px;
+    height: 40px;
+    border-radius: 7px;
+    text-align: center;
+    color: #ffffff;
+    display: flex;
+    background-color: #388fe3;
+}
+
+.item_venda {
+    width: 500px;
+    height: 40px;
+    border-radius: 7px;
+    text-align: center;
+    color: #ffffff;
+    display: flex;
+    background-color: #2644ba;
+}
