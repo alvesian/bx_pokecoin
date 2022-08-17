@@ -1,9 +1,14 @@
 # rubocop:disable Style/Documentation
 
 class TransactionsController < ApplicationController
+  
+  require 'date'
+  
   def index
     @transactions = Transaction.all.order(:id)
     @enabled_transactions = Transaction.all.where(enabled: true).order(:id)
+    @data = Date.today.strftime("%e/%b/%Y")
+    @valor_carteira = Transaction.all.where(enabled: true).sum(:transaction_value)
   end
 
   def show

@@ -2,6 +2,5 @@
 
 <%= render "form", transaction: @transaction %>
 
-<%= link_to '<button type="button">Apagar</button>'.html_safe, transaction_path(@transaction),method: :delete, data: {confirm: "Essa ação não pode ser desfeita. Tem certeza que deseja apagar a transação?"} %>
-
-<%= link_to'<button type="button">Voltar</button>'.html_safe, transactions_path %>
+<div><%= link_to '<button class = "botao_grande",type="button">Apagar</button>'.html_safe, transaction_path(@transaction),method: :delete, data: {confirm: "Essa ação não pode ser desfeita. Tem certeza que deseja apagar a transação?"} %></div>
+<div><%= link_to'<button class = "botao_grande",type="button">Voltar</button>'.html_safe, transactions_path %></div>

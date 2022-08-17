@@ -1,34 +1,27 @@
 <%= form_with model: transaction do |form| %>
   <div data-controller="transaction">
-  <div>
     <% if transaction.transaction_type == "venda" %>
-      <%= form.label "Nome do Pokemón" %><br>
-      <%= form.collection_select :pokemon_name, Transaction.where(enabled: true).order(:pokemon_name), :pokemon_name, :pokemon_name, wrapper: false %>
-      <%= form.label "Valor da transação (USD):" %>
-      <%= form.text_field :transaction_value %>
-      <%= form.select :transaction_type, Transaction.transaction_types.keys.map { |s| [Transaction.human_attribute_name("transaction_type.#{s}"), s] },{}, {:disabled => true} %>
+      <div class = "formulario"><%= form.label "Nome do Pokemón" %>
+      <%= form.collection_select :pokemon_name, Transaction.where(enabled: true).order(:pokemon_name), :pokemon_name, :pokemon_name, wrapper: false %></div>
+      <div class = "formulario"><%= form.label "Valor da transação (USD):" %>
+      <%= form.text_field :transaction_value %></div>
       <%= form.hidden_field :transaction_type, value: "venda" %>
       <%= form.hidden_field :enabled, value: false %>
     <% else %>
-      <%= form.label "Nome do Pokemón" %>
+      <div class = "formulario"><%= form.label "Nome do Pokemón" %>
       <%= form.text_field :pokemon_name, 'data-transaction-target' => 'pokeName' %>
-      <button type="button" class= "btn btn-secondary" data-action="click->transaction#check">
+      <button type="button" class= "botao_grande" data-action="click->transaction#check">
           Validar
-      </button>
-      <%= form.label "Valor da transação (USD):" %>
-      <%= form.text_field :transaction_value, 'data-transaction-target' => 'pokeValue' %>
-      <%= form.select :transaction_type, Transaction.transaction_types.keys.map { |s| [Transaction.human_attribute_name("transaction_type.#{s}"), s] },{}, {:disabled => true} %>
+      </button></div>
+      <div class = "formulario"><%= form.label "Valor da transação (USD):" %>
+      <%= form.text_field :transaction_value, 'data-transaction-target' => 'pokeValue' %></div>
       <%= form.hidden_field :transaction_type, value: "compra" %>
       <%= form.hidden_field :img_url, 'data-transaction-target' => 'pokeImg' %>
-
       <% end %>
-    
     <% transaction.errors.full_messages_for(:name).each do |message| %>
-      <div><%= message %></div>
+    <div><%= message %></div>
     <% end %>
-  </div>
-
   <div>
-    <%= form.submit "Registrar"%>
+    <%= form.submit "Registrar", class: 'botao_grande'%>
   </div>
 <% end %>

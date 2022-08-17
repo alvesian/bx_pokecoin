@@ -13,8 +13,14 @@
 <section class = "carteira_base">
     <% @enabled_transactions.each do |transaction| %>
       <div class = "pokemons"><%= image_tag(transaction.img_url, :class => "img_preview") %>
-      <h3><%=  transaction.pokemon_name %></h3></div>
+      <h3><%=  transaction.pokemon_name %></h3>
+      <h6><%= number_to_currency(transaction.transaction_value) %></h6></div>
   <% end %>
+      <div class = "card_valor">
+      <h5 class = "fonte_carteira"><%= render inline:"VALOR DA CARTEIRA EM " %>
+      <%= @data %></h5>
+      <h5 class = "valor_carteira"><%= number_to_currency(@valor_carteira) %></h5>
+      </div>
 </section>
 </section>
 
